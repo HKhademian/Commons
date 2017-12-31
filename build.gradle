@@ -1,0 +1,68 @@
+buildscript {
+	apply from: 'https://raw.githubusercontent.com/HossainCo/gists/master/deps.gradle'
+	apply from: 'publish.gradle'
+	
+	repositories {
+		google()
+		jcenter()
+	}
+	dependencies {
+		deps.build_gradle()
+		deps.android_maven()
+		deps.kotlin.gradle_plugin()
+		deps.bintray.gradle_plugin()
+	}
+}
+
+allprojects {
+	repositories {
+		google()
+		jcenter()
+	}
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+	compileSdkVersion depsVersion.compile_sdk
+	buildToolsVersion depsVersion.build_tools
+	
+	sourceSets.each { it.java.srcDirs += "src/${it.name}/kotlin" }
+	
+	defaultConfig {
+		minSdkVersion depsVersion.min_sdk
+		targetSdkVersion depsVersion.target_sdk
+		version publishs.version
+	}
+
+	compileOptions {
+		sourceCompatibility depsVersion.compatibility.source
+		targetCompatibility depsVersion.compatibility.target
+	}
+}
+
+dependencies {
+	deps.support.v4()
+	deps.support.recyclerview()
+
+	deps.kotlin.stdlib()
+	
+	deps.arch.lifecycle.runtime()
+	deps.arch.lifecycle.compiler()
+	//deps.arch.lifecycle.common_java8()
+	deps.arch.lifecycle.extensions()
+	deps.arch.room.runtime()
+
+	deps.rx2.java()
+	deps.rx2.kotlin()
+	deps.rx2.android()
+
+	// stetho
+	deps.facebook.stetho()
+}
+
+apply from: 'https://raw.githubusercontent.com/HossainCo/gists/master/publish.maven.gradle'
+apply from: 'https://raw.githubusercontent.com/HossainCo/gists/master/publish.bintray.gradle'
+//apply from: 'https://raw.githubusercontent.com/HossainCo/gists/master/jacoco.gradle'

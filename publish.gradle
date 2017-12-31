@@ -1,0 +1,59 @@
+project.ext {
+	publishs = [
+		group             : 'ir.hossainco',
+		artifact          : 'commons',
+		name              : 'Commons',
+		version           : '0.1.4',
+		des               : 'Collection of useful Kotlin and Android utils for development',
+		url               : 'https://hossainco.github.io/commonkotlin/',
+
+		jar               : [
+			prefix : '',
+			postfix: '',
+		],
+
+		bintray           : [
+			repo: 'maven',
+			org : 'hossainco',
+			name: 'CommonKotlin',
+		],
+
+		scm               : [
+			url                : 'https://hossainco.github.io/Commons/',
+			connection         : 'scm:git:https://github.com/HossainCo/Commons.git',
+			developerConnection: 'scm:git:ssh:git@github.com/HossainCo/Commons.git',
+		],
+
+		developers        : [
+			[
+				id   : 'hossainco',
+				name : 'HossainCo',
+				email: 'hco@post.com',
+			],
+		],
+
+		licenses          : [
+			[
+				name        : 'MIT License',
+				url         : 'https://opensource.org/licenses/MIT',
+				distribution: 'repo',
+				list        : [
+					'MIT',
+				],
+			],
+		],
+
+		removeDependencies: [
+			depsPack.support.v4,
+			depsPack.support.recyclerview,
+			depsPack.arch.lifecycle.runtime,
+			depsPack.arch.lifecycle.extensions,
+			depsPack.arch.lifecycle.reactivestreams,
+			depsPack.arch.room.runtime,
+			depsPack.rx2.java,
+			depsPack.rx2.kotlin,
+			depsPack.rx2.android,
+			depsPack.facebook.stetho,
+		],
+	]
+}
